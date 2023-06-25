@@ -16,7 +16,16 @@ import (
 // @lc code=begin
 
 func replaceSpace(s string) string {
-	return strings.ReplaceAll(s, " ", "%20")
+	sb := strings.Builder{}
+	bytes := []byte(s)
+	for _, b := range bytes {
+		if b == ' ' {
+			sb.WriteString("%20")
+			continue
+		}
+		sb.WriteByte(b)
+	}
+	return sb.String()
 }
 
 // @lc code=end
